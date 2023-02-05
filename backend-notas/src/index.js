@@ -2,11 +2,17 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
 const port = 3900;
 
+var url = 'mongodb://localhost:27017/api_rest_reactnotes';
+
+mongoose.Promise = global.Promise;
+
+var articleRoutes = require('./routes/article');
 
 //using body-parser to analyze body through URL
 app.use(bodyParser.urlencoded({extended: false}));
@@ -23,6 +29,11 @@ app.use((req, res, next) =>{
     next();
 });
 
-app.listen(port, ()=>{
-    console.log('Lanzando la aplicacion en el puerto ' + port);
+app.use('/api', articleRoutes);
+
+mongoose.connect(url, {useNewUrlParser: true}).then(() =>{
+    console.log('Connected to db successfully');
+    app.listen(port, ()=>{
+        console.log('Lauching app on port ' + port);
+    });
 })
