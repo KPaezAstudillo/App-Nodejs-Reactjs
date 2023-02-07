@@ -12,6 +12,8 @@ const New = () => {
         author: null
     });
 
+    const [redirect, setRedirect] = useState(false);
+
     //References for article data
     let titleRef = React.createRef();
     let contentRef = React.createRef();
@@ -27,6 +29,21 @@ const New = () => {
         console.log(article);
     }
 
+    const sendData = (e) =>{
+        //prevents reloading screen:
+        e.preventDefault();
+        changeState();
+        //post request to save article:
+        axios.post(url + 'save', article).then(res => {
+            setRedirect(true);
+            console.log(res.data);
+        })
+    }
+
+    if(redirect){
+        return <Navigate to ='articles' />
+    }
+
 
     return (
         <div className="row new-entry">
@@ -35,7 +52,7 @@ const New = () => {
                     <h4>Publish new article</h4>
                 </div>
                 <div className="card-body">
-                    <form >
+                    <form onSubmit={sendData}>
                         <div className="mb-3">
                             <label>Title</label>
                             <input type="text" className="form-control" id="title" name="title" ref={titleRef} onChange={changeState} required />
