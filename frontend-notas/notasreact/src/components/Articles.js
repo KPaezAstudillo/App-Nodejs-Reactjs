@@ -36,10 +36,10 @@ const Articles = () => {
     }
 
     return (
-        <div className="publications">
+        <div className="publications ">
             <h1 className="mt-5">Articles</h1>
-            <div className="container mt-3">
-                <div className="row col-12 col-lg-5">
+            <div className="container mx-auto mt-5 row">
+                <div className="d-lg-inline-flex">
 
                     {
                         articles.length > 0 ? (
@@ -56,9 +56,9 @@ const Articles = () => {
                                 )
                             }
 
-                            )) : (<h3>
-                                No articles to show
-                            </h3>)
+                            )) : (
+                            <h3>No articles to show</h3>
+                        )
                     }
                 </div>
             </div>

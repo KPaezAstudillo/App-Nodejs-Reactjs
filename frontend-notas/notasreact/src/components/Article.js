@@ -14,8 +14,8 @@ const Article = ({ id, articleData, delArticle }) => {
 
     return (
 
-        <div className="row">
-            <div className="card mx-auto mb-3">
+        <div className="container col-12 col-lg-6">
+            <div className="card mb-3">
                 <div className="card-header">
                     <h3 className="card-title">{title}</h3>
                 </div>
@@ -24,7 +24,7 @@ const Article = ({ id, articleData, delArticle }) => {
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-pub list-group-item">Published on: {formatDate(date)}</li>
-                    <li className="list-pub list-group-item">Author {author}</li>
+                    <li className="list-pub list-group-item">Author: {author}</li>
                 </ul>
 
             </div>
